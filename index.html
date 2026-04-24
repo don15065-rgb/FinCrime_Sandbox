@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinCrime Simulator | AML/KYC Training Playground</title>
+  <meta name="description" content="Practice AML/KYC analysis through realistic fictional scenarios: CDD, risk scoring, transaction monitoring, red flags, SQL and SAR notes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="brand">
+        <div class="brand-mark">FC</div>
+        <div>
+          <h1>FinCrime Simulator</h1>
+          <p>AML/KYC Practice Lab</p>
+        </div>
+      </div>
+
+      <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰ Menu</button>
+
+      <nav class="nav" id="navMenu">
+        <a href="#home" class="nav-link active" data-section="home">Home</a>
+        <a href="#dashboard" class="nav-link" data-section="dashboard">Dashboard</a>
+        <a href="#kyc" class="nav-link" data-section="kyc">KYC Simulator</a>
+        <a href="#monitoring" class="nav-link" data-section="monitoring">Transaction Monitoring</a>
+        <a href="#risk" class="nav-link" data-section="risk">Risk Scoring</a>
+        <a href="#redflags" class="nav-link" data-section="redflags">Red Flag Library</a>
+        <a href="#sql" class="nav-link" data-section="sql">SQL for AML</a>
+        <a href="#sar" class="nav-link" data-section="sar">SAR/STR Notes</a>
+        <a href="#about" class="nav-link" data-section="about">About</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>Built for aspiring AML analysts.</p>
+        <button class="ghost-btn full" id="resetProgress">Reset Progress</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section id="home" class="section active-section">
+        <div class="hero glass-panel">
+          <div class="hero-copy">
+            <span class="eyebrow">Educational Simulator • Fictional Data Only</span>
+            <h2>Practice AML/KYC analysis before you ever touch a real bank platform.</h2>
+            <p>
+              FinCrime Simulator is a practical playground for learning customer due diligence,
+              risk rating, alert review, red flag detection, SQL thinking, and SAR-style escalation notes.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-btn" data-jump="dashboard">Start Simulation</button>
+              <button class="secondary-btn" data-jump="redflags">Explore Red Flags</button>
+              <button class="secondary-btn" data-jump="sql">Practice SQL</button>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="risk-meter">
+              <span>Customer Risk</span>
+              <strong>High</strong>
+              <div class="bar"><i style="width:78%"></i></div>
+            </div>
+            <ul class="mini-alerts">
+              <li><b>Alert:</b> Turnover exceeds profile by 460%</li>
+              <li><b>Red flag:</b> Missing source of funds</li>
+              <li><b>Action:</b> Escalate for EDD review</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card"><h3>KYC/CDD Review</h3><p>Review fictional profiles, identify missing documents, and decide whether to clear, request info, or escalate.</p></article>
+          <article class="feature-card"><h3>Transaction Monitoring</h3><p>Investigate alerts, assess typologies, and compare your rationale with model analyst notes.</p></article>
+          <article class="feature-card"><h3>Risk Scoring</h3><p>Experiment with factors such as PEP status, sanctions proximity, high-risk jurisdictions, and adverse media.</p></article>
+          <article class="feature-card"><h3>SAR/STR Drafting</h3><p>Practice concise internal escalation notes using structured, professional language.</p></article>
+          <article class="feature-card"><h3>SQL for AML</h3><p>Learn how analysts can think through transaction data using practical query patterns.</p></article>
+          <article class="feature-card"><h3>Red Flag Library</h3><p>Search common indicators across KYC, sanctions, TBML, cash activity, and digital banking.</p></article>
+        </div>
+      </section>
+
+      <section id="dashboard" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Your Progress</span>
+          <h2>Analyst Dashboard</h2>
+          <p>Track your practice across KYC cases, alerts, SQL challenges, and risk decisions.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><span>Cases Completed</span><strong id="casesCompleted">0</strong></div>
+          <div class="stat-card"><span>Average Score</span><strong id="averageScore">0%</strong></div>
+          <div class="stat-card"><span>High-Risk Cases Found</span><strong id="highRiskFound">0</strong></div>
+          <div class="stat-card"><span>SQL Exercises Opened</span><strong id="sqlAttempted">0</strong></div>
+        </div>
+        <div class="badge-panel glass-panel">
+          <h3>Badges</h3>
+          <div id="badges" class="badge-list"></div>
+        </div>
+        <div class="dashboard-grid">
+          <button class="module-card" data-jump="kyc"><b>KYC Case Review</b><span>Review customer files and CDD gaps.</span></button>
+          <button class="module-card" data-jump="monitoring"><b>Transaction Monitoring</b><span>Investigate alert patterns and typologies.</span></button>
+          <button class="module-card" data-jump="risk"><b>Risk Calculator</b><span>Build a risk profile factor by factor.</span></button>
+          <button class="module-card" data-jump="sar"><b>SAR/STR Practice</b><span>Write escalation notes and compare models.</span></button>
+        </div>
+      </section>
+
+      <section id="kyc" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">CDD / EDD Practice</span>
+          <h2>KYC Case Review Simulator</h2>
+          <p>Study the customer profile, select the risk rating, identify red flags and decide the next action.</p>
+        </div>
+        <div id="kycCase" class="case-layout"></div>
+      </section>
+
+      <section id="monitoring" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Alert Investigation</span>
+          <h2>Transaction Monitoring Simulator</h2>
+          <p>Review fictional alerts and decide whether the behaviour is suspicious, explain why, and choose next steps.</p>
+        </div>
+        <div id="monitoringCase" class="case-layout"></div>
+      </section>
+
+      <section id="risk" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Risk-Based Approach</span>
+          <h2>Customer Risk Scoring Engine</h2>
+          <p>Select risk factors and see how they change the score and suggested CDD/EDD response.</p>
+        </div>
+        <div class="risk-grid">
+          <div class="glass-panel">
+            <h3>Risk Factors</h3>
+            <div id="riskFactors" class="checkbox-list"></div>
+          </div>
+          <div class="glass-panel sticky-result">
+            <h3>Risk Result</h3>
+            <div class="score-circle" id="riskScore">0</div>
+            <p class="risk-level" id="riskLevel">Low</p>
+            <p id="riskExplanation">Select factors to build a risk profile.</p>
+            <p class="analyst-note" id="riskAction">Suggested action: Standard CDD.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="redflags" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Reference Library</span>
+          <h2>AML Red Flag Library</h2>
+          <p>Search and filter red flags by category. Use this like a lightweight analyst reference board.</p>
+        </div>
+        <div class="filter-row">
+          <input type="search" id="redFlagSearch" placeholder="Search red flags, e.g. shell, PEP, dormant..." />
+          <select id="redFlagCategory"><option value="all">All categories</option></select>
+        </div>
+        <div id="redFlagList" class="library-grid"></div>
+      </section>
+
+      <section id="sql" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Data Thinking</span>
+          <h2>SQL for AML Practice</h2>
+          <p>These challenges do not execute SQL yet. They train you to think like an analyst querying transaction data.</p>
+        </div>
+        <div class="schema-panel glass-panel">
+          <h3>Fictional Tables</h3>
+          <pre><code>customers(customer_id, name, risk_rating, occupation, country, phone, address, account_open_date, expected_monthly_turnover)
+transactions(transaction_id, customer_id, date, type, amount, currency, counterparty, counterparty_country, channel)</code></pre>
+        </div>
+        <div id="sqlChallenges" class="accordion-list"></div>
+      </section>
+
+      <section id="sar" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Escalation Writing</span>
+          <h2>SAR/STR Note Writing Practice</h2>
+          <p>Write concise internal escalation notes, then compare with a model structure.</p>
+        </div>
+        <div id="sarPractice" class="sar-grid"></div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Important</span>
+          <h2>About / Disclaimer</h2>
+        </div>
+        <div class="glass-panel readable">
+          <p><strong>FinCrime Simulator is an educational project only.</strong> It is not a real AML system, not legal advice, not compliance advice, and not a replacement for institutional policy, law, regulatory guidance, or professional judgement.</p>
+          <p>All cases, names, transactions, customer profiles, and examples are fictional. The purpose is to help aspiring AML/KYC analysts understand how financial crime concepts may appear in operational work.</p>
+          <p class="analyst-note">Portfolio note: Built as a practical training project to demonstrate AML/KYC knowledge, SQL awareness, product thinking, and front-end development ability.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
